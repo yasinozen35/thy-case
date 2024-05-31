@@ -1,0 +1,9 @@
+@import "/src/styles/color-variables.module";
+
+.main {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  min-height: 100vh;
+  background-color: $primary-color;
+}
