@@ -1,0 +1,24 @@
+.header {
+  border-bottom: 1px solid white;
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+
+    li {
+      color: white;
+
+      span {
+        font-weight: 300;
+      }
+
+      a {
+        font-weight: bold;
+      }
+    }
+
+    li:nth-child(2) {
+      display: flex;
+    }
+  }
+}
