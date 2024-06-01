@@ -1,18 +1,19 @@
-// import colorVariables from '@/styles/color-variables.module.scss';
 import styles from "./page.module.scss";
-import FlightSearchHeader from "@/components/FlightSearch/FlightSearchHeader/FlightSearchHeader";
-import FlightSearchMiddle from "@/components/FlightSearch/FlightSearchMiddle/FlightSearchMiddle";
+import Header from "@/components/Header/Header";
+import Titles from "@/components/FlightSearch/Titles/Titles";
 import { getDictionary } from "app/[lang]/dictionaries";
+import SearchInputs from "@/components/FlightSearch/SearchArea/SearchArea";
 
 export default async function Home({ params }: { params: { lang: string } }) {
   const { lang } = params;
-  const dict = await getDictionary(lang); // en
+  const dict = await getDictionary(lang);
 
   return (
     <main className={styles.main}>
-      <FlightSearchHeader />
-      <div className={styles.flightSearchMiddle}>
-        <FlightSearchMiddle dict={dict} />
+      <Header dict={dict} />
+      <div className={styles.flightSearch}>
+        <Titles dict={dict} />
+        <SearchInputs dict={dict} />
       </div>
     </main>
   );

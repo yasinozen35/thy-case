@@ -1,0 +1,13 @@
+.inputContainer {
+  padding: 0.4rem;
+  background-color: #f9f9f9;
+  display: flex;
+  gap: 3px;
+  align-items: center;
+
+  input {
+    border: unset;
+    height: 32px;
+    font-size: 1.1rem;
+  }
+}

@@ -1,6 +1,6 @@
 import { i18n } from "./i18n-config";
 import { NextRequest, NextResponse } from "next/server";
-import { defaultLocale } from "@/constants/locales";
+import { defaultLocale } from "@/utils/constants/locales";
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;

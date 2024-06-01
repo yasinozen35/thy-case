@@ -1,0 +1,11 @@
+.titles {
+  @mixin title {
+    color: white;
+    text-align: center;
+    font-weight: 300;
+  }
+
+  h2, h3 {
+    @include title
+  }
+}

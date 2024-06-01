@@ -1,4 +1,4 @@
-import { defaultLocale, locales } from "@/constants/locales";
+import { defaultLocale, locales } from "@/utils/constants/locales";
 
 export const i18n = {
   defaultLocale,
