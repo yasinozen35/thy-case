@@ -25,8 +25,11 @@ const Dropdown = ({
 }: DropdownProps) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const handleOutsideClick = (event: any) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+  const handleOutsideClick = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
       setShowOptions(false);
     }
   };

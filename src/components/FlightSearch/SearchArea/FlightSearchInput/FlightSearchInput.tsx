@@ -17,6 +17,7 @@ const FlightSearchInput = ({
     <div className={styles.container}>
       <div
         className={styles.inputContainer}
+        onFocus={() => setShowOptions(true)}
         onMouseOver={() => {
           setShowOptions(true);
           console.log("tdsadadas");
