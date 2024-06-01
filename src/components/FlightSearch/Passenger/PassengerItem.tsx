@@ -11,8 +11,20 @@ const PassengerItem = ({
   passengerOnClick: () => void;
   passengerCount: number;
 }) => {
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      passengerOnClick();
+    }
+  };
+
   return (
-    <div onClick={passengerOnClick} className={styles.passengerContainer}>
+    <div
+      onClick={passengerOnClick}
+      className={styles.passengerContainer}
+      role="button"
+      tabIndex={0}
+      onKeyPress={handleKeyPress}
+    >
       <span className={styles.count}>{passengerCount}</span>
       <div className={styles.passengers}>
         {[...Array(passengerCount)]

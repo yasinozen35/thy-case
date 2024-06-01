@@ -2,18 +2,21 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-}
-.inputContainer {
-  padding: 0.4rem;
-  background-color: #f9f9f9;
-  display: flex;
-  gap: 3px;
-  align-items: center;
 
-  input {
-    border: unset;
-    height: 32px;
-    font-size: 1.1rem;
-    outline: unset;
+  .inputContainer {
+    padding: 0.4rem;
+    background-color: #f9f9f9;
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    width: 100%;
+
+    input {
+      border: unset;
+      height: 32px;
+      font-size: 1.1rem;
+      outline: unset;
+      width: 100%;
+    }
   }
 }

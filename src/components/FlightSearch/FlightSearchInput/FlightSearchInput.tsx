@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./FlightSearchInput.module.scss";
-import Dropdown from "@/components/Dropdown/Dropdown";
+import Dropdown from "@/components/FlightSearch/Dropdown/Dropdown";
 import { useState } from "react";
 const FlightSearchInput = ({
   icon,

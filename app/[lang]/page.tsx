@@ -2,7 +2,7 @@ import styles from "./page.module.scss";
 import Header from "@/components/Header/Header";
 import Titles from "@/components/FlightSearch/Titles/Titles";
 import { getDictionary } from "app/[lang]/dictionaries";
-import SearchInputs from "@/components/FlightSearch/SearchArea/SearchArea";
+import FlightSearchWrapper from "@/components/FlightSearch/FlightSearchWrapper/FlightSearchWrapper";
 
 export default async function Home({ params }: { params: { lang: string } }) {
   const { lang } = params;
@@ -13,7 +13,7 @@ export default async function Home({ params }: { params: { lang: string } }) {
       <Header dict={dict} />
       <div className={styles.flightSearch}>
         <Titles dict={dict} />
-        <SearchInputs dict={dict} />
+        <FlightSearchWrapper dict={dict} />
       </div>
     </main>
   );

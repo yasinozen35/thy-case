@@ -1,0 +1,26 @@
+@import "src/styles/grid-system.module";
+
+.container {
+  background-color: rgba(96, 105, 119, 0.6);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+
+  .group {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 216px;
+    gap: 4px;
+
+    @include lower-than-desktop {
+      width: 100%;
+    }
+  }
+
+  @include lower-than-desktop {
+    flex-direction: column;
+    width: 85%;
+  }
+}

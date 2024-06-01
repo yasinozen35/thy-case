@@ -3,15 +3,16 @@
 import styles from "./PassengerDropdown.module.scss";
 import React, { useEffect, useRef, useState } from "react";
 import { DictType } from "@/utils/types/commonTypes";
-import RadioButton from "@/components/RadioButton/RadioButton";
-import QuantityChangeButtons from "@/components/QuantityChangeButtons/QuantityChangeButtons";
+import RadioButton from "@/components/FlightSearch/RadioButton/RadioButton";
+import QuantityChangeButtons from "@/components/FlightSearch/QuantityChangeButtons/QuantityChangeButtons";
+import { flightClass } from "@/utils/constants/consts";
 
 const PassengerDropdown = ({
   dict,
   closeDropDownTrigger = () => {},
   setSelectedPassengerCount = () => {},
   setSelectedPassengerClass = () => {},
-  selectedClass = "economic",
+  selectedClass,
   selectedPassengerCount = 0,
 }: {
   dict: DictType;
@@ -25,6 +26,8 @@ const PassengerDropdown = ({
   const [passengerCount, setPassengerCount] = useState<number>(
     selectedPassengerCount,
   );
+  const radioButtonName = "flight-class";
+
   const handleOutsideClick = (event: MouseEvent) => {
     if (
       dropdownRef.current &&
@@ -50,20 +53,20 @@ const PassengerDropdown = ({
       <p>{dict.query_selection_title}</p>
       <div className={styles.radiosWrapper}>
         <RadioButton
-          name={"flight-class"}
           id={"flight-class-economy"}
-          radioText={"Economy Class"}
-          value={"economic"}
+          name={radioButtonName}
+          radioText={dict.query_economy_class}
+          value={flightClass.ECONOMY}
           onClick={(value) => setSelectedPassengerClass(value)}
-          checked={selectedClass === "economic"}
+          checked={selectedClass === flightClass.ECONOMY}
         />
         <RadioButton
-          name={"flight-class"}
           id={"flight-class-business"}
-          radioText={"Bussiness Class"}
-          value={"business"}
+          name={radioButtonName}
+          radioText={dict.query_business_class}
+          value={flightClass.BUSINESS}
           onClick={(value) => setSelectedPassengerClass(value)}
-          checked={selectedClass === "business"}
+          checked={selectedClass === flightClass.BUSINESS}
         />
       </div>
       <div className={styles.passengerSelections}>

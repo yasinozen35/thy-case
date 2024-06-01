@@ -1,3 +1,5 @@
+@import "src/styles/grid-system.module";
+
 .passengerContainer {
   display: flex;
   flex-direction: column;
@@ -6,11 +8,23 @@
   cursor: pointer;
   background-color: rgb(30 41 59);
 
+  @include lower-than-desktop {
+    width: 100%;
+
+    .count {
+      font-size: 15px;
+    }
+  }
+
   .count {
     width: 100%;
     text-align: right;
     color: white;
     font-size: 13px;
+
+    @include lower-than-desktop {
+      font-size: 15px;
+    }
   }
 
   .passengers {

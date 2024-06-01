@@ -1,4 +1,5 @@
 import styles from "./RadioButton.module.scss";
+import { inputType } from "@/utils/constants/consts";
 const RadioButton = ({
   name = "",
   id = "",
@@ -18,7 +19,7 @@ const RadioButton = ({
     <div className={styles.radioGroup}>
       <label htmlFor={id}>
         <input
-          type="radio"
+          type={inputType.RADIO}
           name={name}
           id={id}
           value={value}
