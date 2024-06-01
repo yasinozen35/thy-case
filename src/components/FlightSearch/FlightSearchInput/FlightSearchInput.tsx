@@ -20,7 +20,6 @@ const FlightSearchInput = ({
         onFocus={() => setShowOptions(true)}
         onMouseOver={() => {
           setShowOptions(true);
-          console.log("tdsadadas");
         }}
       >
         {icon}
@@ -30,7 +29,7 @@ const FlightSearchInput = ({
         <Dropdown
           options={options}
           placeholder={"Seçin"}
-          onChange={(i) => console.log("test", i)}
+          onChange={(i) => console.log(i)}
           name={"test"}
           setShowOptions={setShowOptions}
         />

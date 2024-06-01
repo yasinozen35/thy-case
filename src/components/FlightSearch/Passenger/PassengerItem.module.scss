@@ -1,0 +1,20 @@
+.passengerContainer {
+  display: flex;
+  flex-direction: column;
+  width: 4.7rem;
+  padding: 0.3rem;
+  cursor: pointer;
+  background-color: rgb(30 41 59);
+
+  .count {
+    width: 100%;
+    text-align: right;
+    color: white;
+    font-size: 13px;
+  }
+
+  .passengers {
+    display: flex;
+    justify-content: center;
+  }
+}

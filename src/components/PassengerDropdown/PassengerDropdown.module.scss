@@ -1,0 +1,42 @@
+.passengerWrapper {
+  position: absolute;
+  top: 100%;
+  margin-left: 0px !important;
+  margin-top: 0.5rem;
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+  background-color: white;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+  gap: 20px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -0.25rem;
+    left: 62%;
+    height: 0.5rem;
+    width: 0.5rem;
+    background-color: inherit;
+    transform: rotate(45deg);
+  }
+
+  .radiosWrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .passengerSelections {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    p {
+      color: black;
+    }
+  }
+}

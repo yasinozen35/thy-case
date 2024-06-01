@@ -1,0 +1,13 @@
+.radioGroup {
+  display: flex;
+  cursor: pointer;
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-wrap: nowrap;
+    font-size: 10px;
+    cursor: pointer;
+  }
+}
