@@ -1,3 +1,8 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
 .inputContainer {
   padding: 0.4rem;
   background-color: #f9f9f9;
@@ -9,5 +14,6 @@
     border: unset;
     height: 32px;
     font-size: 1.1rem;
+    outline: unset;
   }
 }

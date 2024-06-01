@@ -1,0 +1,50 @@
+.container {
+  background-color: rgba(96, 105, 119, 0.6);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: row;
+
+  .inputs {
+    display: flex;
+    gap: 5px;
+  }
+
+  .blankBlock {
+    --tw-bg-opacity: 1;
+    background-color: rgb(30 41 59 / var(--tw-bg-opacity));
+    padding: 0.75rem;
+
+    &.calendar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 5px;
+      width: 87px;
+      height: 48px;
+      cursor: pointer;
+
+      span {
+        color: white;
+      }
+    }
+
+    &.passengerContainer {
+      display: flex;
+      flex-direction: column;
+      width: 4.7rem;
+      padding: 0.3rem;
+
+      .count {
+        width: 100%;
+        text-align: right;
+        color: white;
+        font-size: 13px;
+      }
+
+      .passengers {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}
