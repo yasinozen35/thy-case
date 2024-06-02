@@ -12,10 +12,11 @@ const Switch = ({
   return (
     <div className={styles.switchContainer}>
       <span>{text}</span>
+      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label className={styles.switch} htmlFor={"switch"}>
         <input
           type="checkbox"
-          onClick={() => onClick(!checked)}
+          onChange={() => onClick(!checked)}
           checked={checked}
           id={"switch"}
         />
