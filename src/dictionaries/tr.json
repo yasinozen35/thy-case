@@ -16,7 +16,7 @@
   "query_economy_class": "Economy Class",
   "query_business_class": "Business Class",
   "query_error_message": "Aradığınız kriterlere uygun uçuş bulunamadı. Lütfen bilgileri değiştirerek tekrar deneyiniz.",
-  "list_flight": "UÇUŞ",
+  "list_flight": "Uçuş",
   "list_passenger": "Yolcu",
   "list_promotion_code": "Promosyon Kodu",
   "list_sorting_criteria": "Sıralama kriteri",

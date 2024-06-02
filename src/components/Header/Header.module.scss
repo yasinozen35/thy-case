@@ -21,4 +21,11 @@
       display: flex;
     }
   }
+
+  &.brown {
+    ul li {
+      color: saddlebrown;
+    }
+    border-bottom-color: saddlebrown;
+  }
 }

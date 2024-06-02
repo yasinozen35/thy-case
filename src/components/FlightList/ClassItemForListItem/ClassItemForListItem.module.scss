@@ -1,0 +1,10 @@
+.classItemForListItem {
+  display: flex;
+    gap: 10px;
+
+  .prices {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+}

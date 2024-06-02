@@ -14,8 +14,13 @@ import SearchButton from "@/components/FlightSearch/SearchButton/SearchButton";
 import PassengerDropdown from "@/components/FlightSearch/PassengerDropdown/PassengerDropdown";
 import { useState } from "react";
 import { flightClass } from "@/utils/constants/consts";
+import { useRouter, usePathname } from "next/navigation";
+import { editedPathName } from "@/utils/hooks/usePathWithLanguage";
+import { ROUTE } from "@/utils/constants/routes";
 
 const FlightSearchWrapper = ({ dict }: { dict: DictType }) => {
+  const router = useRouter();
+  const pathName = usePathname();
   const [showPassengerDropdown, setShowPassengerDropdown] =
     useState<boolean>(false);
   const [selectedPassengerCount, setSelectedPassengerCount] =
@@ -62,7 +67,11 @@ const FlightSearchWrapper = ({ dict }: { dict: DictType }) => {
           passengerOnClick={() => setShowPassengerDropdown(true)}
           passengerCount={selectedPassengerCount}
         />
-        <SearchButton />
+        <SearchButton
+          onClick={() =>
+            router.push(editedPathName(pathName, ROUTE.flightList))
+          }
+        />
         {showPassengerDropdown && (
           <PassengerDropdown
             dict={dict}

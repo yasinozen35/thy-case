@@ -16,7 +16,7 @@
   "query_economy_class": "Economy Class",
   "query_business_class": "Business Class",
   "query_error_message": "No flights found for your criteria. Please try again with different information.",
-  "list_flight": "FLIGHT",
+  "list_flight": "Flight",
   "list_passenger": "Passenger",
   "list_promotion_code": "Promotion Code",
   "list_sorting_criteria": "Sorting Criteria",

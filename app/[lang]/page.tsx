@@ -1,10 +1,11 @@
 import styles from "./page.module.scss";
 import Header from "@/components/Header/Header";
 import Titles from "@/components/FlightSearch/Titles/Titles";
-import { getDictionary } from "app/[lang]/dictionaries";
+import { getDictionary } from "@/dictionaries/dictionaries";
 import FlightSearchWrapper from "@/components/FlightSearch/FlightSearchWrapper/FlightSearchWrapper";
+import { PageParamsType } from "@/utils/types/commonTypes";
 
-export default async function Home({ params }: { params: { lang: string } }) {
+export default async function Home({ params }: PageParamsType) {
   const { lang } = params;
   const dict = await getDictionary(lang);
 

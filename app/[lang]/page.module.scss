@@ -1,19 +1,41 @@
 @import "/src/styles/color-variables.module";
 
-.main {
+@mixin main {
   display: flex;
   flex-direction: column;
   padding: 1rem;
   min-height: 100vh;
-  background-color: $primary-color;
 }
 
-.flightSearch {
+@mixin page {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+
+.main {
+  background-color: $primary-color;
+  @include main;
+}
+
+.flightListMain {
+  background-color: white;
+  @include main;
+}
+
+.flightSearch {
+  @include page;
   margin-top: 6rem;
   gap: 1.5rem;
+}
+
+.flightList {
+  @include page;
+
+  max-width: 1200px;
+  width: 100%;
+  align-items: flex-start;
+  margin: 0 auto;
 }
