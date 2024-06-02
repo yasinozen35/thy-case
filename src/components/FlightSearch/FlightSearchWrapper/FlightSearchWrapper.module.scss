@@ -1,7 +1,8 @@
 @import "src/styles/grid-system.module";
+@import "src/styles/color-variables.module";
 
 .container {
-  background-color: rgba(96, 105, 119, 0.6);
+  background-color: $grey-color;
   padding: 1.25rem;
   display: flex;
   flex-direction: row;

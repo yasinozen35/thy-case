@@ -1,3 +1,4 @@
+@import "src/styles/color-variables.module";
 
 .listItemCard {
   width: 100%;
@@ -6,25 +7,42 @@
 
   .header {
     display: flex;
-    background-color: darkgrey;
-    height: 80px;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
+    background-color: $white-color;
+    height: 60px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
     justify-content: space-between;
+    padding: 15px 10px;
+
+    p:first-child {
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    p:last-child {
+      sup {
+        font-size: 11px;
+        margin-right: 3px;
+        opacity: 0.6;
+      }
+
+      font-weight: 600;
+      font-size: 20px;
+    }
   }
 
   .body {
     display: flex;
     flex-direction: column;
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
+    border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
     height: 230px;
     overflow-y: scroll;
     padding-bottom: 50px;
 
     .cabinFeatureItem {
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid lightgray;
       padding: 10px;
 
       p {

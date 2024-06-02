@@ -1,9 +1,10 @@
 @import "src/styles/grid-system.module";
+@import "/src/styles/color-variables.module";
 
 .searchButton {
   display: flex;
   align-items: center;
-  background-color: rgb(232 25 50);
+  background-color: $red-color;
   padding: 0.75rem;
   height: 48px;
   width: 42px;

@@ -1,10 +1,50 @@
 .classItemForListItem {
   display: flex;
-    gap: 10px;
+  gap: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05);
+  background-color: #f9f9f9;
+  padding: 20px;
+  cursor: pointer;
+
+  div {
+    label {
+      font-weight: 500;
+      color: gray;
+      font-size: 11px;
+      text-decoration: underline;
+
+      input[type="radio"] {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+
 
   .prices {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 3px;
+    align-items: center;
+    justify-content: center;
+
+    p:first-child {
+      font-size: 11px;
+      text-wrap: nowrap;
+      color: gray;
+      font-weight: 500;
+    }
+
+    p:last-child {
+      font-weight: 500;
+    }
+  }
+
+  .arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
   }
 }

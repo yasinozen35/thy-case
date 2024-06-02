@@ -14,8 +14,8 @@ const ClassItemForListItem = ({
   price = "",
   currencyCode = "TRY",
   isOpen = false,
-  index = "0",
-  selectedIndex = "0",
+  index = "",
+  selectedIndex = "",
 }: {
   radioButtonValue: string;
   radioButtonText: string;
@@ -29,8 +29,19 @@ const ClassItemForListItem = ({
   index: string;
   selectedIndex: string;
 }) => {
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      onClick(radioButtonValue);
+    }
+  };
   return (
-    <div className={styles.classItemForListItem}>
+    <div
+      className={styles.classItemForListItem}
+      onClick={() => onClick(radioButtonValue)}
+      role="button"
+      tabIndex={0}
+      onKeyPress={handleKeyPress}
+    >
       <RadioButton
         name={radioButtonName}
         id={radioButtonName + radioButtonValue}
@@ -45,13 +56,13 @@ const ClassItemForListItem = ({
           {currencyCode} {price}
         </p>
       </div>
-      <>
+      <div className={styles.arrow}>
         {isOpen && index === selectedIndex ? (
-          <FontAwesomeIcon icon={faChevronDown} />
+          <FontAwesomeIcon icon={faChevronDown} color={"gray"} />
         ) : (
-          <FontAwesomeIcon icon={faChevronUp} />
+          <FontAwesomeIcon icon={faChevronUp} color={"gray"} />
         )}
-      </>
+      </div>
     </div>
   );
 };

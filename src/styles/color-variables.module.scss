@@ -1,10 +1,13 @@
-$primary-color: #063048;
+$dark-blue-color: #063048;
 $red-color: #E81932;
-$white-color: rgb(96 105 119 / 60%);
+$grey-color: rgb(96 105 119 / 60%);
 $box-shadow: 0 4px 8px 0 rgba(0,0,0,.05);
-$listingHeader: #f9f9f9;
-
+$white-color: #f9f9f9;
 
 :export {
-  primaryColor: $primary-color;
+  darkBlueColor: $dark-blue-color;
+  redColor:$red-color;
+  greyColor: $grey-color;
+  boxShadow: $box-shadow;
+  whiteColor: $white-color;
 }

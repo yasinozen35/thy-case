@@ -1,3 +1,5 @@
+@import "src/styles/color-variables.module";
+
 .listItem {
   display: flex;
   flex-direction: column;
@@ -13,9 +15,17 @@
       display: flex;
       gap: 10px;
       align-items: center;
+      box-shadow: $box-shadow;
+      background-color: $white-color;
+      padding: 20px;
 
       .flightLocationAndTimes {
         width: auto;
+
+        p {
+          font-weight: 600;
+          font-size: 17px;
+        }
 
         &.rightAlign {
           text-align: right;
@@ -24,6 +34,17 @@
         .cities {
           display: flex;
           flex-direction: column;
+
+          p:first-child {
+            font-weight: 500;
+            color: gray;
+            font-size: 13px;
+          }
+
+          p:last-child {
+            font-size: 11px;
+            color: gray;
+          }
         }
       }
 
@@ -39,19 +60,24 @@
           display: block;
         }
       }
-    }
 
-    .flightTotalTime {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      .flightTotalTime {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px;
+        gap: 3px;
 
-      p:first-child {
-        text-wrap: nowrap;
-        font-size: 12px;
-      }
-      p:last-child {
-        text-align: center;
+        p:first-child {
+          text-wrap: nowrap;
+          font-size: 10px;
+          color: gray;
+          font-weight: 500;
+        }
+
+        p:last-child {
+          text-align: center;
+        }
       }
     }
   }
@@ -59,5 +85,8 @@
   .flightCabins {
     display: flex;
     gap: 10px;
+    padding: 15px;
+    background-color: white;
+    box-shadow: $box-shadow;
   }
 }

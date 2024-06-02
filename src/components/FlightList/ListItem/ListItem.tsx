@@ -54,10 +54,10 @@ const ListItem = ({
             cityShortCode={flightInfo.finish.cityShortCode}
             city={flightInfo.finish.city}
           />
-        </div>
-        <div className={styles.flightTotalTime}>
-          <p>{dict.list_flight_time}</p>
-          <p>{flightInfo.totalTime}</p>
+          <div className={styles.flightTotalTime}>
+            <p>{dict.list_flight_time}</p>
+            <p>{flightInfo.totalTime}</p>
+          </div>
         </div>
         <ClassItemForListItem
           radioButtonName={`flightClass${index}`}

@@ -1,10 +1,12 @@
+@import "src/styles/color-variables.module";
+
 .textLabel {
-  background-color: rgb(232 25 50);
-  text-transform: uppercase;
+  background-color: $red-color;
   width: 120px;
-  height: 32px;
+  height: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
+  font-size: 13px;
 }

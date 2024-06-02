@@ -16,7 +16,7 @@
 }
 
 .main {
-  background-color: $primary-color;
+  background-color: $dark-blue-color;
   @include main;
 }
 
@@ -34,8 +34,20 @@
 .flightList {
   @include page;
 
-  max-width: 1200px;
+  max-width: 1000px;
   width: 100%;
   align-items: flex-start;
   margin: 0 auto;
+
+  .flightListHeader {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    h1 {
+      font-size: 20px;
+      font-weight: 300;
+    }
+  }
 }

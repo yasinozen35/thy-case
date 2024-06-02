@@ -5,13 +5,14 @@ import styles from "./Header.module.scss";
 import { link } from "@/utils/constants/consts";
 import { DictType } from "@/utils/types/commonTypes";
 import { usePathname } from "next/navigation";
+import { ROUTE } from "@/utils/constants/routes";
 
 const Header = ({ dict }: { dict: DictType }) => {
   const pathName = usePathname();
 
   return (
     <header
-      className={`${styles.header} ${pathName.includes("/flight-list") ? styles.brown : ""}`}
+      className={`${styles.header} ${pathName.includes(ROUTE.flightList) ? styles.dark : ""}`}
     >
       <nav>
         <ul>

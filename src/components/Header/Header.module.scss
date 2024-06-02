@@ -1,3 +1,5 @@
+@import "src/styles/color-variables.module";
+
 .header {
   border-bottom: 1px solid white;
 
@@ -22,10 +24,10 @@
     }
   }
 
-  &.brown {
+  &.dark {
     ul li {
-      color: saddlebrown;
+      color: $dark-blue-color;
     }
-    border-bottom-color: saddlebrown;
+    border-bottom-color: $dark-blue-color;
   }
 }
