@@ -1,9 +1,14 @@
 @import "src/styles/color-variables.module";
+@import "src/styles/grid-system.module";
 
 .listItemCard {
   width: 100%;
   max-width: 33.3%;
   border-radius: 3px;
+
+  @include mobile-phone {
+    max-width: unset;
+  }
 
   .header {
     display: flex;

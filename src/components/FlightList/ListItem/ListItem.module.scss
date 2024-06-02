@@ -1,4 +1,5 @@
 @import "src/styles/color-variables.module";
+@import "src/styles/grid-system.module";
 
 .listItem {
   display: flex;
@@ -10,13 +11,21 @@
     display: flex;
     gap: 20px;
 
+    @include tablet {
+      flex-wrap: wrap;
+    }
+
+    @include mobile-phone {
+      flex-direction: column;
+    }
+
     .listItemFlightInfo {
       width: 100%;
       display: flex;
       gap: 10px;
       align-items: center;
       box-shadow: $box-shadow;
-      background-color: $white-color;
+      background-color: white;
       padding: 20px;
 
       .flightLocationAndTimes {
@@ -88,5 +97,9 @@
     padding: 15px;
     background-color: white;
     box-shadow: $box-shadow;
+
+    @include mobile-phone {
+      flex-wrap: wrap;
+    }
   }
 }
