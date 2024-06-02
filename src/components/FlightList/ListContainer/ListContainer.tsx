@@ -3,55 +3,24 @@
 import styles from "./ListContainer.module.scss";
 import ListItem from "@/components/FlightList/ListItem/ListItem";
 import { DictType } from "@/utils/types/commonTypes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { flightClass } from "@/utils/constants/consts";
 import PromotionCodeApply from "@/components/FlightList/PromotionCode/PromotionCodeApply/PromotionCodeApply";
+import { useFlights } from "@/contexts/FlightContext";
+import { formattedFlightList } from "@/utils/hooks/formattedFlightList";
+import { FormattedFlightData } from "@/utils/types/flightTypes";
 const ListContainer = ({ dict }: { dict: DictType }) => {
   const [selectedClass, setSelectedClass] = useState<string>(
     flightClass.ECONOMY,
   );
   const [selectedIndex, setSelectedIndex] = useState<string>("0");
-  const flightList = [
-    {
-      start: {
-        time: "01:25",
-        cityShortCode: "IST",
-        city: "İstanbul",
-      },
-      finish: {
-        time: "02:45",
-        cityShortCode: "AYT",
-        city: "Antalya",
-      },
-      totalTime: "1s 30d",
-    },
-    {
-      start: {
-        time: "01:25",
-        cityShortCode: "IST",
-        city: "İstanbul",
-      },
-      finish: {
-        time: "02:45",
-        cityShortCode: "AYT",
-        city: "Antalya",
-      },
-      totalTime: "1s 30d",
-    },
-    {
-      start: {
-        time: "01:25",
-        cityShortCode: "IST",
-        city: "İstanbul",
-      },
-      finish: {
-        time: "02:45",
-        cityShortCode: "AYT",
-        city: "Antalya",
-      },
-      totalTime: "1s 30d",
-    },
-  ];
+  const [flightList, setFlightList] = useState<FormattedFlightData[]>([]);
+  const { flights } = useFlights();
+
+  useEffect(() => {
+    if (flights.length) setFlightList(formattedFlightList(flights));
+  }, [flights]);
+
   return (
     <div className={styles.listContainer}>
       <PromotionCodeApply dict={dict} />

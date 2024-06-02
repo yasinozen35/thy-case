@@ -12,11 +12,17 @@ import CalendarItem from "@/components/FlightSearch/Calendar/CalendarItem";
 import PassengerItem from "@/components/FlightSearch/Passenger/PassengerItem";
 import SearchButton from "@/components/FlightSearch/SearchButton/SearchButton";
 import PassengerDropdown from "@/components/FlightSearch/PassengerDropdown/PassengerDropdown";
-import { useState } from "react";
-import { flightClass } from "@/utils/constants/consts";
+import { useEffect, useState } from "react";
+import {
+  airportTerms,
+  flightClass,
+  LOCAL_STORAGE_KEYS,
+} from "@/utils/constants/consts";
 import { useRouter, usePathname } from "next/navigation";
 import { editedPathName } from "@/utils/hooks/usePathWithLanguage";
 import { ROUTE } from "@/utils/constants/routes";
+import { useFlights } from "@/contexts/FlightContext";
+import { useUniqueAirports } from "@/utils/hooks/useUniqueAirports";
 
 const FlightSearchWrapper = ({ dict }: { dict: DictType }) => {
   const router = useRouter();
@@ -28,23 +34,19 @@ const FlightSearchWrapper = ({ dict }: { dict: DictType }) => {
   const [selectedPassengerClass, setSelectedPassengerClass] = useState<string>(
     flightClass.ECONOMY,
   );
-
+  const { flights } = useFlights();
+  const { originAirports, destinationAirports } = useUniqueAirports(flights);
   const flightSearchInputs = [
     {
-      options: [
-        { key: "2sadasd", value: "2tasdada" },
-        { key: "1sadasd", value: "tasdada" },
-      ],
+      options: originAirports,
       icon: (
         <FontAwesomeIcon icon={faPlaneArrival} width={"15px"} height={"15px"} />
       ),
       placeHolder: dict.query_from,
+      name: airportTerms.ORIGIN_AIRPORTS,
     },
     {
-      options: [
-        { key: "sadasd", value: "tasdada" },
-        { key: "sadasd", value: "tasdada" },
-      ],
+      options: destinationAirports,
       icon: (
         <FontAwesomeIcon
           icon={faPlaneDeparture}
@@ -53,13 +55,22 @@ const FlightSearchWrapper = ({ dict }: { dict: DictType }) => {
         />
       ),
       placeHolder: dict.query_to,
+      name: airportTerms.DESTINATION_AIRPORTS,
     },
   ];
+
+  useEffect(() => {
+    localStorage.setItem(
+      LOCAL_STORAGE_KEYS.SELECTED_PASSENGER_CLASS,
+      flightClass.ECONOMY,
+    );
+    localStorage.setItem(LOCAL_STORAGE_KEYS.SELECTED_PASSENGER_COUNT, "1");
+  }, []);
 
   return (
     <div className={styles.container}>
       {flightSearchInputs.map((item, index) => (
-        <FlightSearchInput key={index} {...item} />
+        <FlightSearchInput {...item} key={item.name + index} />
       ))}
       <div className={styles.group}>
         <CalendarItem dict={dict} />
@@ -77,12 +88,20 @@ const FlightSearchWrapper = ({ dict }: { dict: DictType }) => {
             dict={dict}
             selectedClass={selectedPassengerClass}
             selectedPassengerCount={selectedPassengerCount}
-            setSelectedPassengerClass={(value) =>
-              setSelectedPassengerClass(value)
-            }
-            setSelectedPassengerCount={(count) =>
-              setSelectedPassengerCount(count)
-            }
+            setSelectedPassengerClass={(value) => {
+              setSelectedPassengerClass(value);
+              localStorage.setItem(
+                LOCAL_STORAGE_KEYS.SELECTED_PASSENGER_CLASS,
+                value,
+              );
+            }}
+            setSelectedPassengerCount={(count) => {
+              setSelectedPassengerCount(count);
+              localStorage.setItem(
+                LOCAL_STORAGE_KEYS.SELECTED_PASSENGER_COUNT,
+                count.toString(),
+              );
+            }}
             closeDropDownTrigger={() => setShowPassengerDropdown(false)}
           />
         )}

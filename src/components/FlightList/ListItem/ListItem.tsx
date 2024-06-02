@@ -4,8 +4,10 @@ import styles from "./ListItem.module.scss";
 import FlightLocationAndTimes from "@/components/FlightList/ListItem/FlightLocationAndTimes/FlightLocationAndTimes";
 import ClassItemForListItem from "@/components/FlightList/ClassItemForListItem/ClassItemForListItem";
 import ListItemCard from "@/components/FlightList/ListItemCard/ListItemCard";
-import { flightClass } from "@/utils/constants/consts";
+import { flightClass, STATUS } from "@/utils/constants/consts";
 import { DictType } from "@/utils/types/commonTypes";
+import { FormattedFlightData, Subcategory } from "@/utils/types/flightTypes";
+import { useEffect, useState } from "react";
 
 const ListItem = ({
   flightInfo,
@@ -16,19 +18,7 @@ const ListItem = ({
   selectedClass = "",
   setSelectedClass = () => {},
 }: {
-  flightInfo: {
-    start: {
-      time: string;
-      cityShortCode: string;
-      city: string;
-    };
-    finish: {
-      time: string;
-      cityShortCode: string;
-      city: string;
-    };
-    totalTime: string;
-  };
+  flightInfo: FormattedFlightData;
   dict: DictType;
   index: string;
   selectedIndex: string;
@@ -36,6 +26,24 @@ const ListItem = ({
   setSelectedClass: (value: string) => void;
   setSelectedIndex: (value: string) => void;
 }) => {
+  const [fareSubCategories, setFareSubCategories] = useState<Subcategory[]>();
+  const radioButtonName = `flightClass${index}`;
+
+  useEffect(() => {
+    if (!selectedClass || !flightInfo || !flightInfo.fareCategories) return;
+
+    const key = selectedClass === flightClass.ECONOMY ? "ECONOMY" : "BUSINESS";
+    const selectedFareCategories = flightInfo.fareCategories[key] || {
+      subcategories: [],
+    };
+
+    const availableSubcategories = selectedFareCategories.subcategories.filter(
+      (item) => item.status === STATUS.AVAILABLE,
+    );
+
+    setFareSubCategories(availableSubcategories);
+  }, [selectedClass, flightInfo]);
+
   return (
     <div className={styles.listItem}>
       <div className={styles.listItemHorizontal}>
@@ -60,11 +68,11 @@ const ListItem = ({
           </div>
         </div>
         <ClassItemForListItem
-          radioButtonName={`flightClass${index}`}
+          radioButtonName={radioButtonName}
           radioButtonText={"ECONOMY"}
           radioButtonValue={flightClass.ECONOMY}
           priceText={dict.list_per_passenger}
-          price={"135"}
+          price={flightInfo.economyMinPrice.toString()}
           isOpen={selectedClass === flightClass.ECONOMY}
           checked={selectedClass === flightClass.ECONOMY}
           onClick={(value) => {
@@ -75,11 +83,11 @@ const ListItem = ({
           index={index}
         />
         <ClassItemForListItem
-          radioButtonName={`flightClass${index}`}
+          radioButtonName={radioButtonName}
           radioButtonText={"BUSINESS"}
           radioButtonValue={flightClass.BUSINESS}
           priceText={dict.list_per_passenger}
-          price={"435"}
+          price={flightInfo.businessMinPrice.toString()}
           isOpen={selectedClass === flightClass.BUSINESS}
           checked={selectedClass === flightClass.BUSINESS}
           onClick={(value) => {
@@ -90,19 +98,20 @@ const ListItem = ({
           index={index}
         />
       </div>
-      {selectedIndex === index && (
+      {selectedIndex === index && fareSubCategories?.length && (
         <div className={styles.flightCabins}>
-          <ListItemCard
-            headerTitleText={"Eco Fly"}
-            price={"137"}
-            cabinFeatures={[
-              { value: "15 kg bagaj" },
-              { value: "15 kg bagaj" },
-              { value: "15 kg bagaj" },
-              { value: "15 kg bagaj" },
-            ]}
-            buttonText={dict.list_select_flight}
-          />
+          {fareSubCategories.map((item) => (
+            <ListItemCard
+              key={item.brandCode}
+              headerTitleText={item.brandCode}
+              price={item.price.amount.toString()}
+              currencyCode={item.price.currency}
+              cabinFeatures={item.rights.map((rightItem) => {
+                return { value: rightItem };
+              })}
+              buttonText={dict.list_select_flight}
+            />
+          ))}
         </div>
       )}
     </div>

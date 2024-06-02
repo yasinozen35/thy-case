@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { LayoutPropsType } from "@/utils/types/commonTypes";
+import { FlightProvider } from "@/contexts/FlightContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -15,7 +16,9 @@ export default function RootLayout({
 }: Readonly<LayoutPropsType>) {
   return (
     <html lang={lang}>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <FlightProvider>{children}</FlightProvider>
+      </body>
     </html>
   );
 }

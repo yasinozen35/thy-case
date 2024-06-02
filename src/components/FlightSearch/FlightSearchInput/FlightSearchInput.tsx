@@ -7,12 +7,15 @@ const FlightSearchInput = ({
   icon,
   placeHolder,
   options = [],
+  name = "",
 }: {
   icon: React.ReactNode;
   placeHolder: string;
   options: { key: string; value: string }[];
+  name: string;
 }) => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
+  const [value, setValue] = useState<string>("");
   return (
     <div className={styles.container}>
       <div
@@ -23,14 +26,17 @@ const FlightSearchInput = ({
         }}
       >
         {icon}
-        <input placeholder={placeHolder} />
+        <input placeholder={placeHolder} value={value} />
       </div>
       {options.length > 0 && showOptions && (
         <Dropdown
           options={options}
           placeholder={"Seçin"}
-          onChange={(i) => console.log(i)}
-          name={"test"}
+          onChange={(i) => {
+            setValue(i.name);
+            localStorage.setItem(name, JSON.stringify(i));
+          }}
+          name={"airports-selection"}
           setShowOptions={setShowOptions}
         />
       )}

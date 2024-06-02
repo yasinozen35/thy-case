@@ -4,7 +4,7 @@ import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 
 export interface DropdownReturn {
   name: string;
-  value: { key: string; value: string };
+  value: string;
 }
 
 interface DropdownProps {
@@ -51,8 +51,8 @@ const Dropdown = ({
             key={opt.key}
             onClick={() => {
               const returnValue = {
-                name: name,
-                value: { key: opt.key, value: opt.value },
+                name: opt.key,
+                value: opt.value,
               };
               onChange(returnValue);
               setShowOptions(false);

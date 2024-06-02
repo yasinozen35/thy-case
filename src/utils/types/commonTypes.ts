@@ -4,4 +4,3 @@ export type LayoutPropsType = {
   params: { lang: string };
 };
 export type PageParamsType = { params: { lang: string } };
-export type SubPageParamsType = { page: { params: { lang: string } } };
