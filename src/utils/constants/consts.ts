@@ -16,7 +16,7 @@ export const airportTerms = {
 export const LOCAL_STORAGE_KEYS = {
   SELECTED_PASSENGER_CLASS: "selected_passenger_class",
   SELECTED_PASSENGER_COUNT: "selected_passenger_count",
-  SELECTED_CABIN: "selected_cabin",
+  SELECTED_CABIN: "selected_cabin_price",
 };
 
 export const STATUS = {

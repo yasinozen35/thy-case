@@ -51,3 +51,17 @@
     }
   }
 }
+
+.flightResultMain {
+  background-color: white;
+  @include main;
+}
+
+.flightResult {
+  @include page;
+
+  max-width: 1000px;
+  width: 100%;
+  align-items: flex-start;
+  margin: 0 auto;
+}
