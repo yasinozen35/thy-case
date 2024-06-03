@@ -23,7 +23,7 @@ const RadioButton = ({
           name={name}
           id={id}
           value={value}
-          onClick={() => onClick(value)}
+          onChange={() => onClick(value)}
           checked={checked}
         />
         {radioText}

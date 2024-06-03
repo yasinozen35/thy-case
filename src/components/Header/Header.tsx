@@ -12,7 +12,7 @@ const Header = ({ dict }: { dict: DictType }) => {
 
   return (
     <header
-      className={`${styles.header} ${pathName.includes(ROUTE.flightList) ? styles.dark : ""}`}
+      className={`${styles.header} ${pathName.includes(ROUTE.flightList) || pathName.includes(ROUTE.flightCabinSelected) ? styles.dark : ""}`}
     >
       <nav>
         <ul>

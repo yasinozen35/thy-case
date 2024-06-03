@@ -13,11 +13,19 @@ const QuantityChangeButtons = ({
   return (
     <div className={styles.quantityChangeButtons}>
       <button onClick={minusOnClick}>
-        <FontAwesomeIcon icon={faMinus} color={"white"} />
+        <FontAwesomeIcon
+          icon={faMinus}
+          color={"white"}
+          data-testid={"minus-icon"}
+        />
       </button>
       <span>{counter}</span>
       <button onClick={plusOnClick}>
-        <FontAwesomeIcon icon={faPlus} color={"white"} />
+        <FontAwesomeIcon
+          icon={faPlus}
+          color={"white"}
+          data-testid={"plus-icon"}
+        />
       </button>
     </div>
   );

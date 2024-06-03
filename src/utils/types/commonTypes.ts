@@ -3,4 +3,4 @@ export type LayoutPropsType = {
   children: React.ReactNode;
   params: { lang: string };
 };
-export type PageParamsType = { params: { lang: string } };
+export type PageParamsType = { params: { lang: string; cabinSlug?: string } };

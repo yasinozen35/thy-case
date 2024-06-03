@@ -9,6 +9,7 @@ import PromotionCodeApply from "@/components/FlightList/PromotionCode/PromotionC
 import { useFlights } from "@/contexts/FlightContext";
 import { formattedFlightList } from "@/utils/hooks/formattedFlightList";
 import { FormattedFlightData } from "@/utils/types/flightTypes";
+
 const ListContainer = ({ dict }: { dict: DictType }) => {
   const [selectedClass, setSelectedClass] = useState<string>(
     flightClass.ECONOMY,
@@ -18,7 +19,10 @@ const ListContainer = ({ dict }: { dict: DictType }) => {
   const { flights } = useFlights();
 
   useEffect(() => {
-    if (flights.length) setFlightList(formattedFlightList(flights));
+    if (flights.length) {
+      setFlightList(formattedFlightList(flights));
+      console.log("formattedFlightList(flights)", formattedFlightList(flights));
+    }
   }, [flights]);
 
   return (

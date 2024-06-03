@@ -1,13 +1,13 @@
 import styles from "./ListItemCard.module.scss";
+import { LOCAL_STORAGE_KEYS } from "@/utils/constants/consts";
+import { usePathname, useRouter } from "next/navigation";
+import { editedPathName } from "@/utils/hooks/usePathWithLanguage";
+import { ROUTE } from "@/utils/constants/routes";
 const ListItemCard = ({
   headerTitleText = "",
   currencyCode = "TRY",
   price = "",
-  cabinFeatures = [
-    {
-      value: "15 kg bagaj",
-    },
-  ],
+  cabinFeatures = [],
   buttonText = "",
 }: {
   headerTitleText: string;
@@ -18,6 +18,13 @@ const ListItemCard = ({
   }[];
   buttonText: string;
 }) => {
+  const router = useRouter();
+  const pathName = usePathname();
+  const cabinSelectionCompleted = () => {
+    localStorage.setItem(LOCAL_STORAGE_KEYS.SELECTED_CABIN, price);
+    router.push(editedPathName(pathName, ROUTE.flightCabinSelectedCompleted));
+  };
+
   return (
     <div className={styles.listItemCard}>
       <div className={styles.header}>
@@ -38,7 +45,7 @@ const ListItemCard = ({
         ))}
       </div>
       <div className={styles.footer}>
-        <button>{buttonText}</button>
+        <button onClick={() => cabinSelectionCompleted()}>{buttonText}</button>
       </div>
     </div>
   );

@@ -7,7 +7,12 @@ const CalendarItem = ({ dict }: { dict: DictType }) => {
   return (
     <div className={styles.calendar}>
       <span>{dict.query_date}</span>
-      <FontAwesomeIcon icon={faCalendar} color={"white"} width={"17px"} />
+      <FontAwesomeIcon
+        icon={faCalendar}
+        color={"white"}
+        width={"17px"}
+        data-testid="calendar-icon"
+      />
     </div>
   );
 };

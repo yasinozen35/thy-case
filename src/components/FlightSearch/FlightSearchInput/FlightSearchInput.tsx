@@ -26,7 +26,11 @@ const FlightSearchInput = ({
         }}
       >
         {icon}
-        <input placeholder={placeHolder} value={value} />
+        <input
+          placeholder={placeHolder}
+          value={value}
+          onChange={() => console.log("geldi")}
+        />
       </div>
       {options.length > 0 && showOptions && (
         <Dropdown
