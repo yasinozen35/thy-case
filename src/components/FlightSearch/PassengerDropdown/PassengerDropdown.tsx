@@ -2,7 +2,6 @@
 
 import styles from "./PassengerDropdown.module.scss";
 import React, { useEffect, useRef, useState } from "react";
-import { DictType } from "@/utils/types/commonTypes";
 import RadioButton from "@/components/FlightSearch/RadioButton/RadioButton";
 import QuantityChangeButtons from "@/components/FlightSearch/QuantityChangeButtons/QuantityChangeButtons";
 import { flightClass } from "@/utils/constants/consts";
