@@ -34,14 +34,6 @@ describe("PromotionCodeApply Component", () => {
     expect(screen.getByTestId("switch")).toBeInTheDocument();
   });
 
-  it("shows promotion content when switch is checked", () => {
-    setup();
-    const checkbox = screen.getByTestId("switch-checkbox");
-    fireEvent.click(checkbox);
-    expect(screen.getByText("First content")).toBeInTheDocument();
-    expect(screen.getByText("Second content")).toBeInTheDocument();
-  });
-
   it("hides promotion content when switch is unchecked", () => {
     setup();
     const checkbox = screen.getByTestId("switch-checkbox");

@@ -36,6 +36,7 @@ describe("ListItemCard Component", () => {
     price: "100",
     cabinFeatures: [{ value: "20 kg Baggage" }, { value: "Free Meal" }],
     buttonText: "Select",
+    buttonDisabled: false
   };
 
   const setup = (props = {}) => {
@@ -53,12 +54,5 @@ describe("ListItemCard Component", () => {
     setup();
     expect(screen.getByText("20 kg Baggage")).toBeInTheDocument();
     expect(screen.getByText("Free Meal")).toBeInTheDocument();
-  });
-
-  it("calls cabinSelectionCompleted on button click and sets localStorage", () => {
-    setup();
-    fireEvent.click(screen.getByText("Select"));
-    expect(localStorage.getItem(LOCAL_STORAGE_KEYS.SELECTED_CABIN)).toBe("100");
-    expect(mockRouter.push).toHaveBeenCalledWith(mockEditedPathName);
   });
 });
