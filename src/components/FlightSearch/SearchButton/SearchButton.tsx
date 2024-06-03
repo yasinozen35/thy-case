@@ -4,7 +4,12 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 const SearchButton = ({ onClick = () => {} }: { onClick: () => void }) => {
   return (
     <button className={styles.searchButton} onClick={onClick}>
-      <FontAwesomeIcon icon={faChevronRight} color={"white"} width="10px" />
+      <FontAwesomeIcon
+        icon={faChevronRight}
+        color={"white"}
+        width="10px"
+        height={"13px"}
+      />
     </button>
   );
 };

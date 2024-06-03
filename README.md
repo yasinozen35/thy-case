@@ -1,3 +1,15 @@
+# Yasin ÖZEN
+## Turkish Technology case challenge
+
+## Yapılanlar
+
+
+
+- Dil alt yapısı kuruldu, tüm textler farklı dillere göre düzenlendi.
+- Tüm componentlere test yazmaya çalışıldı.
+- Tüm sayfalar responsive'e uygun yapıldı.
+- Hazır ui kullanmak yerine modal hariç hepsini kendim yazmaya çalıştım. Hepsini kendim yazmaya girişince süre bakımından biraz dara düştüm ama yine de söz verdiğim üzere yetiştirmeye çalıştım.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

@@ -34,6 +34,7 @@ const PassengerItem = ({
                 icon={faPerson}
                 color={"white"}
                 opacity={index === 2 ? "0.5" : "1"}
+                width={"10px"}
               />
             ) : (
               <FontAwesomeIcon

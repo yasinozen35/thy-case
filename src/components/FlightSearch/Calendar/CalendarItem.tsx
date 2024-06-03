@@ -10,7 +10,7 @@ const CalendarItem = ({ dict }: PageDictType) => {
       <FontAwesomeIcon
         icon={faCalendar}
         color={"white"}
-        width={"17px"}
+        width={"13px"}
         data-testid="calendar-icon"
       />
     </div>
