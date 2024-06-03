@@ -6,7 +6,6 @@ import { link } from "@/utils/constants/consts";
 import { DictType } from "@/utils/types/commonTypes";
 import { usePathname, useRouter } from "next/navigation";
 import { ROUTE } from "@/utils/constants/routes";
-import { editedPathName } from "@/utils/hooks/usePathWithLanguage";
 
 const Header = ({ dict }: { dict: DictType }) => {
   const pathName = usePathname();
