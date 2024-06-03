@@ -8,6 +8,7 @@ import { FARE_CATEGORY_NAMES, flightClass } from "@/utils/constants/consts";
 import { Subcategory } from "@/utils/types/flightTypes";
 import { useEffect, useState, useMemo, useCallback } from "react";
 import { ListItemType } from "@/components/FlightList/ListItem/ListItemType";
+import { promotionAfterEcoFlyPrice } from "@/utils/hooks/usePromotionAfterEcoFlyPrice";
 
 const ListItem = ({
   flightInfo,
@@ -53,7 +54,11 @@ const ListItem = ({
       <ListItemCard
         key={item.brandCode}
         headerTitleText={item.brandCode}
-        price={item.price.amount.toString()}
+        price={promotionAfterEcoFlyPrice(
+          usePromotion,
+          item.price.amount,
+          item.brandCode,
+        )}
         currencyCode={item.price.currency}
         cabinFeatures={item.rights.map((rightItem) => {
           return { value: rightItem };

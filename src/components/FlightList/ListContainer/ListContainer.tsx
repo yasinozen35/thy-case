@@ -12,6 +12,8 @@ import { FormattedFlightData } from "@/utils/types/flightTypes";
 import { sortFlightsByDepartureTime } from "@/utils/hooks/sortFlightsByDepartureTime";
 import { sortFlightsByPrice } from "@/utils/hooks/sortFlightsByPrice";
 import { getPriceKey } from "@/utils/hooks/getPriceKey";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
 const ListContainer = ({ dict }: PageDictType) => {
   const [selectedClass, setSelectedClass] = useState<string>(
@@ -53,13 +55,31 @@ const ListContainer = ({ dict }: PageDictType) => {
         ),
       );
     }
-  }, [isMinPriceSorting, selectedClass, flights, getSortedFlights]);
+  }, [isMinPriceSorting, flights, getSortedFlights]);
+
+  const handlePromotionCodeApplyClick = useCallback((value: boolean) => {
+    setUsePromotionCode(value);
+  }, []);
+
+  const handleMinPriceSortingClick = useCallback(() => {
+    setIsMinPriceSorting(
+      isMinPriceSorting !== null ? !isMinPriceSorting : false,
+    );
+  }, [isMinPriceSorting]);
+
+  const handleStartTimeSortingClick = useCallback(() => {
+    setIsStartTimeSorting(
+      isStartTimeSorting !== null ? !isStartTimeSorting : true,
+    );
+  }, [isStartTimeSorting]);
 
   useEffect(() => {
+    setIsStartTimeSorting(null);
     if (isMinPriceSorting !== null) sortFilterPrice();
   }, [isMinPriceSorting, sortFilterPrice]);
 
   useEffect(() => {
+    setIsMinPriceSorting(null);
     if (isStartTimeSorting !== null) {
       const sortedFlightsAscending = sortFlightsByDepartureTime(
         formattedFlightList(flights),
@@ -83,7 +103,7 @@ const ListContainer = ({ dict }: PageDictType) => {
         setFlightList(formattedFlightList(flights));
       }
     }
-  }, [flights, selectedClass, selectedPassengerCount]);
+  }, [flights, selectedPassengerCount]);
 
   useEffect(() => {
     const savedClass = localStorage.getItem(
@@ -95,22 +115,6 @@ const ListContainer = ({ dict }: PageDictType) => {
     setSelectedClass(savedClass || flightClass.ECONOMY);
     setSelectedPassengerCount(savedPassengerCount || "0");
   }, []);
-
-  const handlePromotionCodeApplyClick = useCallback((value: boolean) => {
-    setUsePromotionCode(value);
-  }, []);
-
-  const handleMinPriceSortingClick = useCallback(() => {
-    setIsMinPriceSorting(
-      isMinPriceSorting !== null ? !isMinPriceSorting : false,
-    );
-  }, [isMinPriceSorting]);
-
-  const handleStartTimeSortingClick = useCallback(() => {
-    setIsStartTimeSorting(
-      isStartTimeSorting !== null ? !isStartTimeSorting : true,
-    );
-  }, [isStartTimeSorting]);
 
   const memoizedFlightList = useMemo(() => {
     return flightList.map((flight, index) => (
@@ -128,6 +132,14 @@ const ListContainer = ({ dict }: PageDictType) => {
     ));
   }, [flightList, dict, selectedClass, selectedIndex, usePromotionCode]);
 
+  const priceMinMaxIcon = useMemo(() => {
+    return isMinPriceSorting ? faChevronDown : faChevronUp;
+  }, [isMinPriceSorting]);
+
+  const startTimeMinMaxIcon = useMemo(() => {
+    return isStartTimeSorting ? faChevronDown : faChevronUp;
+  }, [isStartTimeSorting]);
+
   return (
     <div className={styles.listContainer}>
       <PromotionCodeApply
@@ -140,10 +152,16 @@ const ListContainer = ({ dict }: PageDictType) => {
           <p>{dict.list_sorting_criteria}</p>
           <div className={styles.buttons}>
             <button onClick={handleMinPriceSortingClick}>
-              {dict.list_economy_fare}
+              {dict.list_economy_fare}{" "}
+              {isMinPriceSorting !== null && (
+                <FontAwesomeIcon icon={priceMinMaxIcon} color={"gray"} />
+              )}
             </button>
             <button onClick={handleStartTimeSortingClick}>
-              {dict.list_departure_time}
+              {dict.list_departure_time}{" "}
+              {isStartTimeSorting !== null && (
+                <FontAwesomeIcon icon={startTimeMinMaxIcon} color={"gray"} />
+              )}
             </button>
           </div>
         </div>
