@@ -13,13 +13,13 @@ const FlightList = async (page: PageParamsType) => {
   return (
     <main className={styles.flightListMain}>
       <Header dict={dict} />
-      <div className={styles.flightList}>
-        <div className={styles.flightListHeader}>
+      <article className={styles.flightList}>
+        <section className={styles.flightListHeader}>
           <TextLabel text={dict.list_flight} />
           <PageTitle dict={dict} />
-        </div>
+        </section>
         <ListContainer dict={dict} />
-      </div>
+      </article>
     </main>
   );
 };

@@ -141,7 +141,7 @@ const ListContainer = ({ dict }: PageDictType) => {
   }, [isStartTimeSorting]);
 
   return (
-    <div className={styles.listContainer}>
+    <article className={styles.listContainer}>
       <PromotionCodeApply
         dict={dict}
         checked={usePromotionCode}
@@ -167,7 +167,7 @@ const ListContainer = ({ dict }: PageDictType) => {
         </div>
       </div>
       <div className={styles.listContainerBody}>{memoizedFlightList}</div>
-    </div>
+    </article>
   );
 };
 

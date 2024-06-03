@@ -1,6 +1,6 @@
 import { LayoutPropsType } from "@/utils/types/commonTypes";
 
 const CabinSelectLayout = ({ children }: Readonly<LayoutPropsType>) => {
-  return <div>{children}</div>;
+  return <>{children}</>;
 };
 export default CabinSelectLayout;

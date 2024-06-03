@@ -97,7 +97,7 @@ const FlightSearchWrapper = ({ dict }: PageDictType) => {
   }, []);
 
   return (
-    <div className={styles.container}>
+    <article className={styles.container}>
       {flightSearchInputs.map((item, index) => (
         <FlightSearchInput {...item} key={item.name + index} />
       ))}
@@ -135,7 +135,7 @@ const FlightSearchWrapper = ({ dict }: PageDictType) => {
       <Modal open={showErrorModal} onClose={() => setShowErrorModal(false)}>
         <p>{dict.query_error_message}</p>
       </Modal>
-    </div>
+    </article>
   );
 };
 

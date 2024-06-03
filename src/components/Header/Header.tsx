@@ -31,10 +31,10 @@ const Header = ({ dict }: PageDictType) => {
           </ul>
         </nav>
       </header>
-      <div className={styles.changeLanguage}>
+      <article className={styles.changeLanguage}>
         <button onClick={() => router.push(ROUTE.enBase)}>EN</button>
         <button onClick={() => router.push(ROUTE.base)}>TR</button>
-      </div>
+      </article>
     </>
   );
 };

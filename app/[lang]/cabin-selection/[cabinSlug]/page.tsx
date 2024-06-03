@@ -10,11 +10,11 @@ const CabinSelection = async (page: PageParamsType) => {
   return (
     <main className={styles.flightResultMain}>
       <Header dict={dict} />
-      <div className={styles.flightResult}>
+      <article className={styles.flightResult}>
         <div className={styles.flightResult}>
           <FlightResult cabinSlug={cabinSlug} dict={dict} />
         </div>
-      </div>
+      </article>
     </main>
   );
 };

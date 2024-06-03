@@ -12,10 +12,10 @@ export default async function Home({ params }: PageParamsType) {
   return (
     <main className={styles.main}>
       <Header dict={dict} />
-      <div className={styles.flightSearch}>
+      <article className={styles.flightSearch}>
         <Titles dict={dict} />
         <FlightSearchWrapper dict={dict} />
-      </div>
+      </article>
     </main>
   );
 }
