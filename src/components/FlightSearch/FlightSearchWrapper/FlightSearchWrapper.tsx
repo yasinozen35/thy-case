@@ -1,6 +1,6 @@
 "use client";
 
-import { DictType } from "@/utils/types/commonTypes";
+import { PageDictType } from "@/utils/types/commonTypes";
 import FlightSearchInput from "@/components/FlightSearch/FlightSearchInput/FlightSearchInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./FlightSearchWrapper.module.scss";
@@ -26,7 +26,7 @@ import { useUniqueAirports } from "@/utils/hooks/useUniqueAirports";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 
-const FlightSearchWrapper = ({ dict }: { dict: DictType }) => {
+const FlightSearchWrapper = ({ dict }: PageDictType) => {
   const router = useRouter();
   const pathName = usePathname();
   const [showPassengerDropdown, setShowPassengerDropdown] =

@@ -1,9 +1,9 @@
 import styles from "./CalendarItem.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
-import { DictType } from "@/utils/types/commonTypes";
+import { PageDictType } from "@/utils/types/commonTypes";
 
-const CalendarItem = ({ dict }: { dict: DictType }) => {
+const CalendarItem = ({ dict }: PageDictType) => {
   return (
     <div className={styles.calendar}>
       <span>{dict.query_date}</span>

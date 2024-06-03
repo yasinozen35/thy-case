@@ -5,9 +5,9 @@ import FlightLocationAndTimes from "@/components/FlightList/ListItem/FlightLocat
 import ClassItemForListItem from "@/components/FlightList/ClassItemForListItem/ClassItemForListItem";
 import ListItemCard from "@/components/FlightList/ListItemCard/ListItemCard";
 import { FARE_CATEGORY_NAMES, flightClass } from "@/utils/constants/consts";
-import { DictType } from "@/utils/types/commonTypes";
-import { FormattedFlightData, Subcategory } from "@/utils/types/flightTypes";
+import { Subcategory } from "@/utils/types/flightTypes";
 import { useEffect, useState } from "react";
+import { ListItemType } from "@/components/FlightList/ListItem/ListItemType";
 
 const ListItem = ({
   flightInfo,
@@ -18,16 +18,7 @@ const ListItem = ({
   selectedClass = "",
   setSelectedClass = () => {},
   usePromotion = false,
-}: {
-  flightInfo: FormattedFlightData;
-  dict: DictType;
-  index: string;
-  selectedIndex: string;
-  selectedClass: string;
-  setSelectedClass: (value: string) => void;
-  setSelectedIndex: (value: string) => void;
-  usePromotion: boolean;
-}) => {
+}: ListItemType) => {
   const [fareSubCategories, setFareSubCategories] = useState<Subcategory[]>();
   const radioButtonName = `flightClass${index}`;
 

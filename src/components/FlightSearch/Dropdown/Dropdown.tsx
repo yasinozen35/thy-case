@@ -1,21 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import style from "./Dropdown.module.scss";
-import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
-
-export interface DropdownReturn {
-  name: string;
-  value: string;
-}
-
-interface DropdownProps {
-  value?: string | null;
-  options: { key: string; value: string }[];
-  placeholder: string;
-  onChange: (args1: DropdownReturn) => void;
-  icon?: IconDefinition;
-  name: string;
-  setShowOptions: (value: boolean) => void;
-}
+import { DropdownProps } from "@/components/FlightSearch/Dropdown/DropdownType";
 
 const Dropdown = ({
   options,

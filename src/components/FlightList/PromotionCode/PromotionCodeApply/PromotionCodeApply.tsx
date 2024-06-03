@@ -2,17 +2,13 @@
 
 import styles from "./PromotionCode.module.scss";
 import Switch from "@/components/FlightList/PromotionCode/Switch/Switch";
-import { DictType } from "@/utils/types/commonTypes";
+import { PromotionCodeApplyType } from "@/components/FlightList/PromotionCode/PromotionCodeApply/PromotionCodeApplyType";
 
 const PromotionCodeApply = ({
   dict,
   checked = false,
   onClick = () => {},
-}: {
-  dict: DictType;
-  checked: boolean;
-  onClick: (value: boolean) => void;
-}) => {
+}: PromotionCodeApplyType) => {
   return (
     <div className={styles.promotionCodeApply}>
       <Switch

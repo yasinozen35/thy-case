@@ -4,6 +4,8 @@ import RadioButton from "@/components/FlightSearch/RadioButton/RadioButton";
 import styles from "./ClassItemForListItem.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { ClassItemForListItemType } from "@/components/FlightList/ClassItemForListItem/ClassItemForListItemType";
+
 const ClassItemForListItem = ({
   radioButtonValue = "",
   radioButtonText = "",
@@ -16,19 +18,7 @@ const ClassItemForListItem = ({
   isOpen = false,
   index = "",
   selectedIndex = "",
-}: {
-  radioButtonValue: string;
-  radioButtonText: string;
-  radioButtonName: string;
-  onClick: (value: string) => void;
-  checked: boolean;
-  priceText?: string;
-  price: string;
-  currencyCode?: string;
-  isOpen?: boolean;
-  index: string;
-  selectedIndex: string;
-}) => {
+}: ClassItemForListItemType) => {
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === "Enter" || event.key === " ") {
       onClick(radioButtonValue);
@@ -57,11 +47,10 @@ const ClassItemForListItem = ({
         </p>
       </div>
       <div className={styles.arrow}>
-        {isOpen && index === selectedIndex ? (
-          <FontAwesomeIcon icon={faChevronDown} color={"gray"} />
-        ) : (
-          <FontAwesomeIcon icon={faChevronUp} color={"gray"} />
-        )}
+        <FontAwesomeIcon
+          icon={isOpen && index === selectedIndex ? faChevronUp : faChevronDown}
+          color={"gray"}
+        />
       </div>
     </div>
   );

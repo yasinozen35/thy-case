@@ -3,11 +3,11 @@
 import Link from "next/link";
 import styles from "./Header.module.scss";
 import { link } from "@/utils/constants/consts";
-import { DictType } from "@/utils/types/commonTypes";
 import { usePathname, useRouter } from "next/navigation";
 import { ROUTE } from "@/utils/constants/routes";
+import { PageDictType } from "@/utils/types/commonTypes";
 
-const Header = ({ dict }: { dict: DictType }) => {
+const Header = ({ dict }: PageDictType) => {
   const pathName = usePathname();
   const router = useRouter();
 
@@ -19,11 +19,14 @@ const Header = ({ dict }: { dict: DictType }) => {
         <nav>
           <ul>
             <li>
-              <Link href={"/"}>{link}</Link>
+              {
+                // TODO: linklerin nereye gideceğini bilmediğim için boş kalmaması için böyle linklendirdim
+              }
+              <Link href={ROUTE.base}>{link}</Link>
             </li>
             <li>
               <span>{dict.header_search}</span>
-              <Link href={"/test"}>{dict.header_flight_challenge}</Link>
+              <Link href={ROUTE.base}>{dict.header_flight_challenge}</Link>
             </li>
           </ul>
         </nav>

@@ -6,6 +6,7 @@ import { DictType } from "@/utils/types/commonTypes";
 import RadioButton from "@/components/FlightSearch/RadioButton/RadioButton";
 import QuantityChangeButtons from "@/components/FlightSearch/QuantityChangeButtons/QuantityChangeButtons";
 import { flightClass } from "@/utils/constants/consts";
+import { PassengerDropdownType } from "@/components/FlightSearch/PassengerDropdown/PassengerDropdownType";
 
 const PassengerDropdown = ({
   dict,
@@ -14,14 +15,7 @@ const PassengerDropdown = ({
   setSelectedPassengerClass = () => {},
   selectedClass,
   selectedPassengerCount = 0,
-}: {
-  dict: DictType;
-  closeDropDownTrigger: () => void;
-  setSelectedPassengerCount: (value: number) => void;
-  selectedClass: string;
-  selectedPassengerCount: number;
-  setSelectedPassengerClass: (value: string) => void;
-}) => {
+}: PassengerDropdownType) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [passengerCount, setPassengerCount] = useState<number>(
     selectedPassengerCount,

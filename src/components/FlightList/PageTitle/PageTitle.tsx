@@ -1,10 +1,10 @@
 "use client";
 
-import { DictType } from "@/utils/types/commonTypes";
+import { PageDictType } from "@/utils/types/commonTypes";
 import { useEffect, useState } from "react";
 import { airportTerms, LOCAL_STORAGE_KEYS } from "@/utils/constants/consts";
 
-export const PageTitle = ({ dict }: { dict: DictType }) => {
+export const PageTitle = ({ dict }: PageDictType) => {
   const [flightInfo, setFlightInfo] = useState<{
     originAirport: {
       name: string | null;

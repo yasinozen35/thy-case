@@ -41,6 +41,10 @@ const ListItemCard = ({
         LOCAL_STORAGE_KEYS.SELECTED_CABIN,
         finalPrice.toString(),
       );
+      localStorage.setItem(
+        LOCAL_STORAGE_KEYS.SELECTED_CABIN_CURRENCY,
+        currencyCode,
+      );
 
       router.push(editedPathName(pathName, ROUTE.flightCabinSelectedCompleted));
     } else {

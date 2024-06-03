@@ -2,7 +2,7 @@
 
 import styles from "./ListContainer.module.scss";
 import ListItem from "@/components/FlightList/ListItem/ListItem";
-import { DictType } from "@/utils/types/commonTypes";
+import { PageDictType } from "@/utils/types/commonTypes";
 import { useEffect, useState } from "react";
 import { flightClass, LOCAL_STORAGE_KEYS } from "@/utils/constants/consts";
 import PromotionCodeApply from "@/components/FlightList/PromotionCode/PromotionCodeApply/PromotionCodeApply";
@@ -13,7 +13,7 @@ import { sortFlightsByDepartureTime } from "@/utils/hooks/sortFlightsByDeparture
 import { sortFlightsByPrice } from "@/utils/hooks/sortFlightsByPrice";
 import { getPriceKey } from "@/utils/hooks/getPriceKey";
 
-const ListContainer = ({ dict }: { dict: DictType }) => {
+const ListContainer = ({ dict }: PageDictType) => {
   const [selectedClass, setSelectedClass] = useState<string>(
     flightClass.ECONOMY,
   );

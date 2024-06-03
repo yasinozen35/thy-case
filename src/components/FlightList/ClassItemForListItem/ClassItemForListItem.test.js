@@ -60,10 +60,10 @@ describe("ClassItemForListItem Component", () => {
   });
 
   it("shows the correct icon based on isOpen and selectedIndex", () => {
-    setup({ isOpen: true });
+    setup({ isOpen: false });
     expect(screen.getByTestId("chevron-down")).toBeInTheDocument();
 
-    setup({ isOpen: false });
+    setup({ isOpen: true });
     expect(screen.getByTestId("chevron-up")).toBeInTheDocument();
   });
 

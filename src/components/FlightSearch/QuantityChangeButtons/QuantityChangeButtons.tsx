@@ -1,15 +1,12 @@
 import styles from "./QuantityChangeButtons.module.scss";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { QuantityChangeButtonsType } from "@/components/FlightSearch/QuantityChangeButtons/QuantityChangeButtonsType";
 const QuantityChangeButtons = ({
   minusOnClick = () => {},
   plusOnClick = () => {},
   counter = 0,
-}: {
-  minusOnClick: () => void;
-  plusOnClick: () => void;
-  counter: number;
-}) => {
+}: QuantityChangeButtonsType) => {
   return (
     <div className={styles.quantityChangeButtons}>
       <button onClick={minusOnClick}>

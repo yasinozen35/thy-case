@@ -1,8 +1,8 @@
 "use client";
 import styles from "./Titles.module.scss";
-import { DictType } from "@/utils/types/commonTypes";
+import { PageDictType } from "@/utils/types/commonTypes";
 
-const Titles = ({ dict }: { dict: DictType }) => {
+const Titles = ({ dict }: PageDictType) => {
   return (
     <div className={styles.titles}>
       <h2>{dict.query_title}</h2>

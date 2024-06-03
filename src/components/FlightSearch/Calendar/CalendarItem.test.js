@@ -5,7 +5,6 @@ import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 import CalendarItem from "./CalendarItem";
 
 library.add(faCalendar);
-
 describe("CalendarItem", () => {
   const mockDict = {
     query_date: "Tarih",

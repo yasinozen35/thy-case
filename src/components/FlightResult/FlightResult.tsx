@@ -1,6 +1,5 @@
 "use client";
 
-import { DictType } from "@/utils/types/commonTypes";
 import styles from "./FlightResult.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -8,29 +7,33 @@ import {
   faCircleXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
-import { LOCAL_STORAGE_KEYS } from "@/utils/constants/consts";
+import {
+  FLIGHT_RESULT_PROCESS,
+  LOCAL_STORAGE_KEYS,
+} from "@/utils/constants/consts";
 import { editedPathName } from "@/utils/hooks/usePathWithLanguage";
 import { ROUTE } from "@/utils/constants/routes";
 import { usePathname, useRouter } from "next/navigation";
+import { FlightResultType } from "@/components/FlightResult/FlightResultType";
 
-const FlightResult = ({
-  dict,
-  cabinSlug,
-}: {
-  cabinSlug?: string;
-  dict: DictType;
-}) => {
+const FlightResult = ({ dict, cabinSlug }: FlightResultType) => {
   const router = useRouter();
   const pathName = usePathname();
 
   const [price, setPrice] = useState<string>("0");
+  const [currency, setCurrency] = useState<string>("");
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
+
   useEffect(() => {
     const priceValue =
       localStorage.getItem(LOCAL_STORAGE_KEYS.SELECTED_CABIN) || "0";
+    const currencyCode =
+      localStorage.getItem(LOCAL_STORAGE_KEYS.SELECTED_CABIN_CURRENCY) || "";
+
+    setCurrency(currencyCode);
     setPrice(priceValue);
 
-    setIsCompleted(cabinSlug === "completed");
+    setIsCompleted(cabinSlug === FLIGHT_RESULT_PROCESS.COMPLETED);
   }, []);
 
   return (
@@ -48,15 +51,17 @@ const FlightResult = ({
       </div>
       {isCompleted ? (
         <div className={styles.prices}>
-          <h1>Toplam tutar</h1>
-          <h1>TRY {price}</h1>
+          <h1>{dict.result_total_amount}</h1>
+          <h1>
+            {currency} {price}
+          </h1>
         </div>
       ) : (
         <div className={styles.redirectButton}>
           <button
             onClick={() => router.push(editedPathName(pathName, ROUTE.base))}
           >
-            Başa Dön
+            {dict.result_go_back}
           </button>
         </div>
       )}

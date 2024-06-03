@@ -1,5 +1,6 @@
 import styles from "./RadioButton.module.scss";
 import { inputType } from "@/utils/constants/consts";
+import { RadioButtonType } from "@/components/FlightSearch/RadioButton/RadioButtonType";
 const RadioButton = ({
   name = "",
   id = "",
@@ -7,14 +8,7 @@ const RadioButton = ({
   radioText = "",
   onClick = () => {},
   checked = false,
-}: {
-  name: string;
-  id: string;
-  value: string;
-  radioText: string;
-  onClick: (type: string) => void;
-  checked: boolean;
-}) => {
+}: RadioButtonType) => {
   return (
     <div className={styles.radioGroup}>
       <label htmlFor={id}>

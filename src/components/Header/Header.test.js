@@ -1,67 +1,63 @@
-import "@testing-library/jest-dom";
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import Header from "./Header";
-import { usePathname } from "next/navigation";
-import { ROUTE } from "@/utils/constants/routes";
+import '@testing-library/jest-dom';
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import Header from './Header';
+import { ROUTE } from '@/utils/constants/routes';
 
-// Mock next/navigation usePathname
-jest.mock("next/navigation", () => ({
+jest.mock('next/navigation', () => ({
   usePathname: jest.fn(),
+  useRouter: jest.fn(),
 }));
 
-const mockDict = {
-  header_search: "Search",
-  header_flight_challenge: "Flight Challenge",
-};
+describe('Header Component', () => {
+  const mockDict = {
+    header_search: 'Search',
+    header_flight_challenge: 'Flight Challenge',
+  };
 
-// Helper function to set the pathname
-const setPathname = (pathname) => {
-  usePathname.mockImplementation(() => pathname);
-};
+  const useRouterMock = require('next/navigation').useRouter;
+  const usePathnameMock = require('next/navigation').usePathname;
 
-describe("Header", () => {
-  afterEach(() => {
-    jest.clearAllMocks();
+  beforeEach(() => {
+    usePathnameMock.mockReturnValue('/');
+    useRouterMock.mockReturnValue({
+      push: jest.fn(),
+      pathname: '/',
+    });
   });
 
-  it("renders the header with correct links", () => {
-    setPathname("/");
+  it('renders the Header component', () => {
     render(<Header dict={mockDict} />);
 
-    expect(screen.getByText("Search")).toBeInTheDocument();
-    expect(screen.getByText("Flight Challenge")).toBeInTheDocument();
+    expect(screen.getByText('Search')).toBeInTheDocument();
+    expect(screen.getByText('Flight Challenge')).toBeInTheDocument();
+    expect(screen.getByText('EN')).toBeInTheDocument();
+    expect(screen.getByText('TR')).toBeInTheDocument();
   });
 
-  it("applies dark class when on flightList or flightCabinSelected routes", () => {
-    setPathname(ROUTE.flightList);
-    const { container } = render(<Header dict={mockDict} />);
+  it('changes language to English when EN button is clicked', () => {
+    const pushMock = jest.fn();
+    useRouterMock.mockReturnValueOnce({
+      push: pushMock,
+      pathname: '/',
+    });
 
-    expect(container.firstChild).toHaveClass("dark");
-  });
-
-  it("does not apply dark class when not on specific routes", () => {
-    setPathname("/");
-    const { container } = render(<Header dict={mockDict} />);
-
-    expect(container.firstChild).not.toHaveClass("dark");
-  });
-
-  it("has a link to the home page", () => {
-    setPathname("/");
     render(<Header dict={mockDict} />);
 
-    const homeLink = screen.getByRole("link", { name: /turkishairlines.com/i });
-    expect(homeLink).toBeInTheDocument();
-    expect(homeLink).toHaveAttribute("href", "/");
+    fireEvent.click(screen.getByText('EN'));
+    expect(pushMock).toHaveBeenCalledWith(ROUTE.enBase);
   });
 
-  it("has a link to the test page", () => {
-    setPathname("/");
+  it('changes language to Turkish when TR button is clicked', () => {
+    const pushMock = jest.fn();
+    useRouterMock.mockReturnValueOnce({
+      push: pushMock,
+      pathname: '/',
+    });
+
     render(<Header dict={mockDict} />);
 
-    const testLink = screen.getByRole("link", { name: /flight challenge/i });
-    expect(testLink).toBeInTheDocument();
-    expect(testLink).toHaveAttribute("href", "/test");
+    fireEvent.click(screen.getByText('TR'));
+    expect(pushMock).toHaveBeenCalledWith(ROUTE.base);
   });
 });

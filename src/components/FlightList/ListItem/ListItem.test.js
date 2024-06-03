@@ -1,8 +1,9 @@
 import "@testing-library/jest-dom";
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import ListItem from "./ListItem";
-import { flightClass, STATUS } from "../../../utils/constants/consts";
+import { STATUS } from "../../../utils/constants/consts";
+
 jest.mock(
   "@/components/FlightList/ListItem/FlightLocationAndTimes/FlightLocationAndTimes",
   () =>

@@ -3,17 +3,13 @@
 import styles from "./FlightSearchInput.module.scss";
 import Dropdown from "@/components/FlightSearch/Dropdown/Dropdown";
 import { useState } from "react";
+import { FlightSearchInputType } from "@/components/FlightSearch/FlightSearchInput/FlightSearchInputType";
 const FlightSearchInput = ({
   icon,
   placeHolder,
   options = [],
   name = "",
-}: {
-  icon: React.ReactNode;
-  placeHolder: string;
-  options: { key: string; value: string }[];
-  name: string;
-}) => {
+}: FlightSearchInputType) => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [value, setValue] = useState<string>("");
   const handleSetValue = (value: string) => {

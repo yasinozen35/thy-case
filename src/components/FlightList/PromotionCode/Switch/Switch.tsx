@@ -1,14 +1,7 @@
 import styles from "./Switch.module.scss";
+import { SwitchType } from "@/components/FlightList/PromotionCode/Switch/SwitchType";
 
-const Switch = ({
-  text,
-  checked = false,
-  onClick = () => {},
-}: {
-  text: string;
-  checked: boolean;
-  onClick: (value: boolean) => void;
-}) => {
+const Switch = ({ text, checked = false, onClick = () => {} }: SwitchType) => {
   return (
     <div className={styles.switchContainer}>
       <span>{text}</span>

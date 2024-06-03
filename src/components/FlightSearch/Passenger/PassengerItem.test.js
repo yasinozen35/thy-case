@@ -2,8 +2,6 @@ import "@testing-library/jest-dom";
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import PassengerItem from "./PassengerItem";
-import { faPerson, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 jest.mock("@fortawesome/react-fontawesome", () => ({
   FontAwesomeIcon: jest.fn((props) => (

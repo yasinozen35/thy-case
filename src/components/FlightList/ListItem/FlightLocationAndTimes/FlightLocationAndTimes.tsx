@@ -1,16 +1,12 @@
 import styles from "@/components/FlightList/ListItem/ListItem.module.scss";
+import { FlightLocationAndTimesType } from "@/components/FlightList/ListItem/FlightLocationAndTimes/FlightLocationAndTimesType";
 
 const FlightLocationAndTimes = ({
   isAlignRight = false,
   time = "",
   cityShortCode = "",
   city = "",
-}: {
-  isAlignRight?: boolean;
-  time: string;
-  cityShortCode: string;
-  city: string;
-}) => {
+}: FlightLocationAndTimesType) => {
   return (
     <div
       className={`${styles.flightLocationAndTimes} ${isAlignRight ? styles.rightAlign : ""}`}

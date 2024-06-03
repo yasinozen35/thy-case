@@ -3,14 +3,12 @@
 import styles from "./PassengerItem.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPerson, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { PassengerItemType } from "@/components/FlightSearch/Passenger/PassengerItemType";
 
 const PassengerItem = ({
   passengerOnClick = () => {},
   passengerCount = 0,
-}: {
-  passengerOnClick: () => void;
-  passengerCount: number;
-}) => {
+}: PassengerItemType) => {
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === "Enter" || event.key === " ") {
       passengerOnClick();
