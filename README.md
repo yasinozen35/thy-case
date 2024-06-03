@@ -11,6 +11,10 @@
 - Case maddelerinde istenildiği üzere LocalStorage kullanıldı. Ayrıca ben çok küçük ContextAPI de kullandım.
 - Hazır ui kullanmak yerine modal hariç hepsini kendim yazmaya çalıştım. Hepsini kendim yazmaya girişince süre bakımından biraz dara düştüm ama yine de söz verdiğim üzere yetiştirmeye çalıştım.
 
+## Not
+- Uçuş arama sayfasında, error case'i görmek için boş ilerlemek yeterli olur.
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
