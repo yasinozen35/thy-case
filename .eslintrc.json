@@ -12,6 +12,9 @@
     "plugin:prettier/recommended",
     "next/core-web-vitals"
   ],
+  "ignorePatterns": [
+    "src/components/**/*.test.js"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {

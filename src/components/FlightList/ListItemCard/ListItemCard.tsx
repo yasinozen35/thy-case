@@ -3,8 +3,7 @@ import { LOCAL_STORAGE_KEYS } from "@/utils/constants/consts";
 import { usePathname, useRouter } from "next/navigation";
 import { editedPathName } from "@/utils/hooks/usePathWithLanguage";
 import { ROUTE } from "@/utils/constants/routes";
-import { types } from "sass";
-import Number = types.Number;
+
 const ListItemCard = ({
   headerTitleText = "",
   currencyCode = "TRY",
