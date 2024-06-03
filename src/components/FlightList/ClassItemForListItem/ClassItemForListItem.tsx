@@ -1,5 +1,6 @@
 "use client";
 
+import { useCallback, useMemo } from "react";
 import RadioButton from "@/components/FlightSearch/RadioButton/RadioButton";
 import styles from "./ClassItemForListItem.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,26 +20,42 @@ const ClassItemForListItem = ({
   index = "",
   selectedIndex = "",
 }: ClassItemForListItemType) => {
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === "Enter" || event.key === " ") {
-      onClick(radioButtonValue);
-    }
-  };
+  const handleClick = useCallback(() => {
+    onClick(radioButtonValue);
+  }, [onClick, radioButtonValue]);
+
+  const handleKeyPress = useCallback(
+    (event: React.KeyboardEvent<HTMLDivElement>) => {
+      if (event.key === "Enter" || event.key === " ") {
+        onClick(radioButtonValue);
+      }
+    },
+    [onClick, radioButtonValue],
+  );
+
+  const icon = useMemo(() => {
+    return isOpen && index === selectedIndex ? faChevronUp : faChevronDown;
+  }, [isOpen, index, selectedIndex]);
+
+  const isChecked = useMemo(() => {
+    return checked && index === selectedIndex;
+  }, [checked, index, selectedIndex]);
+
   return (
     <div
       className={styles.classItemForListItem}
-      onClick={() => onClick(radioButtonValue)}
+      onClick={handleClick}
       role="button"
       tabIndex={0}
       onKeyPress={handleKeyPress}
     >
       <RadioButton
         name={radioButtonName}
-        id={radioButtonName + radioButtonValue}
+        id={`${radioButtonName}${radioButtonValue}`}
         value={radioButtonValue}
         radioText={radioButtonText}
         onClick={(value) => onClick(value)}
-        checked={checked && index === selectedIndex}
+        checked={isChecked}
       />
       <div className={styles.prices}>
         <p>{priceText}</p>
@@ -47,10 +64,7 @@ const ClassItemForListItem = ({
         </p>
       </div>
       <div className={styles.arrow}>
-        <FontAwesomeIcon
-          icon={isOpen && index === selectedIndex ? faChevronUp : faChevronDown}
-          color={"gray"}
-        />
+        <FontAwesomeIcon icon={icon} color={"gray"} />
       </div>
     </div>
   );

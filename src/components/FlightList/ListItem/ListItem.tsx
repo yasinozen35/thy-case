@@ -6,7 +6,7 @@ import ClassItemForListItem from "@/components/FlightList/ClassItemForListItem/C
 import ListItemCard from "@/components/FlightList/ListItemCard/ListItemCard";
 import { FARE_CATEGORY_NAMES, flightClass } from "@/utils/constants/consts";
 import { Subcategory } from "@/utils/types/flightTypes";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { ListItemType } from "@/components/FlightList/ListItem/ListItemType";
 
 const ListItem = ({
@@ -22,9 +22,12 @@ const ListItem = ({
   const [fareSubCategories, setFareSubCategories] = useState<Subcategory[]>();
   const radioButtonName = `flightClass${index}`;
 
-  const buttonDisabledControl = (brand: string) => {
-    return brand !== FARE_CATEGORY_NAMES.ECO_FLY && usePromotion;
-  };
+  const buttonDisabledControl = useCallback(
+    (brand: string) => {
+      return brand !== FARE_CATEGORY_NAMES.ECO_FLY && usePromotion;
+    },
+    [usePromotion],
+  );
 
   useEffect(() => {
     if (!selectedClass || !flightInfo || !flightInfo.fareCategories) return;
@@ -36,6 +39,31 @@ const ListItem = ({
 
     setFareSubCategories(selectedFareCategories.subcategories);
   }, [selectedClass, flightInfo]);
+
+  const handleClassItemClick = useCallback(
+    (value: string) => {
+      setSelectedClass(value);
+      setSelectedIndex(index);
+    },
+    [setSelectedClass, setSelectedIndex, index],
+  );
+
+  const memoizedFareSubCategories = useMemo(() => {
+    return fareSubCategories?.map((item) => (
+      <ListItemCard
+        key={item.brandCode}
+        headerTitleText={item.brandCode}
+        price={item.price.amount.toString()}
+        currencyCode={item.price.currency}
+        cabinFeatures={item.rights.map((rightItem) => {
+          return { value: rightItem };
+        })}
+        buttonText={dict.list_select_flight}
+        status={item.status}
+        buttonDisabled={buttonDisabledControl(item.brandCode)}
+      />
+    ));
+  }, [fareSubCategories, dict, buttonDisabledControl]);
 
   return (
     <div className={styles.listItem}>
@@ -68,10 +96,7 @@ const ListItem = ({
           price={flightInfo.economyMinPrice.toString()}
           isOpen={selectedClass === flightClass.ECONOMY}
           checked={selectedClass === flightClass.ECONOMY}
-          onClick={(value) => {
-            setSelectedClass(value);
-            setSelectedIndex(index);
-          }}
+          onClick={handleClassItemClick}
           selectedIndex={selectedIndex}
           index={index}
         />
@@ -83,31 +108,13 @@ const ListItem = ({
           price={flightInfo.businessMinPrice.toString()}
           isOpen={selectedClass === flightClass.BUSINESS}
           checked={selectedClass === flightClass.BUSINESS}
-          onClick={(value) => {
-            setSelectedClass(value);
-            setSelectedIndex(index);
-          }}
+          onClick={handleClassItemClick}
           selectedIndex={selectedIndex}
           index={index}
         />
       </div>
       {selectedIndex === index && fareSubCategories?.length && (
-        <div className={styles.flightCabins}>
-          {fareSubCategories.map((item) => (
-            <ListItemCard
-              key={item.brandCode}
-              headerTitleText={item.brandCode}
-              price={item.price.amount.toString()}
-              currencyCode={item.price.currency}
-              cabinFeatures={item.rights.map((rightItem) => {
-                return { value: rightItem };
-              })}
-              buttonText={dict.list_select_flight}
-              status={item.status}
-              buttonDisabled={buttonDisabledControl(item.brandCode)}
-            />
-          ))}
-        </div>
+        <div className={styles.flightCabins}>{memoizedFareSubCategories}</div>
       )}
     </div>
   );
