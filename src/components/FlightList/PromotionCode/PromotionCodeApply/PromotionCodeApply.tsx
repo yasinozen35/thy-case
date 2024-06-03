@@ -3,15 +3,22 @@
 import styles from "./PromotionCode.module.scss";
 import Switch from "@/components/FlightList/PromotionCode/Switch/Switch";
 import { DictType } from "@/utils/types/commonTypes";
-import { useState } from "react";
-const PromotionCodeApply = ({ dict }: { dict: DictType }) => {
-  const [checked, setChecked] = useState<boolean>(false);
+
+const PromotionCodeApply = ({
+  dict,
+  checked = false,
+  onClick = () => {},
+}: {
+  dict: DictType;
+  checked: boolean;
+  onClick: (value: boolean) => void;
+}) => {
   return (
     <div className={styles.promotionCodeApply}>
       <Switch
         text={dict.list_promotion_code}
         checked={checked}
-        onClick={(value) => setChecked(value)}
+        onClick={(value) => onClick(value)}
       />
       {checked && (
         <div className={styles.promotionCodeTexts}>

@@ -4,7 +4,7 @@ import styles from "./ListItem.module.scss";
 import FlightLocationAndTimes from "@/components/FlightList/ListItem/FlightLocationAndTimes/FlightLocationAndTimes";
 import ClassItemForListItem from "@/components/FlightList/ClassItemForListItem/ClassItemForListItem";
 import ListItemCard from "@/components/FlightList/ListItemCard/ListItemCard";
-import { flightClass, STATUS } from "@/utils/constants/consts";
+import { FARE_CATEGORY_NAMES, flightClass } from "@/utils/constants/consts";
 import { DictType } from "@/utils/types/commonTypes";
 import { FormattedFlightData, Subcategory } from "@/utils/types/flightTypes";
 import { useEffect, useState } from "react";
@@ -17,6 +17,7 @@ const ListItem = ({
   setSelectedIndex = () => {},
   selectedClass = "",
   setSelectedClass = () => {},
+  usePromotion = false,
 }: {
   flightInfo: FormattedFlightData;
   dict: DictType;
@@ -25,9 +26,14 @@ const ListItem = ({
   selectedClass: string;
   setSelectedClass: (value: string) => void;
   setSelectedIndex: (value: string) => void;
+  usePromotion: boolean;
 }) => {
   const [fareSubCategories, setFareSubCategories] = useState<Subcategory[]>();
   const radioButtonName = `flightClass${index}`;
+
+  const buttonDisabledControl = (brand: string) => {
+    return brand !== FARE_CATEGORY_NAMES.ECO_FLY && usePromotion;
+  };
 
   useEffect(() => {
     if (!selectedClass || !flightInfo || !flightInfo.fareCategories) return;
@@ -37,11 +43,7 @@ const ListItem = ({
       subcategories: [],
     };
 
-    const availableSubcategories = selectedFareCategories.subcategories.filter(
-      (item) => item.status === STATUS.AVAILABLE,
-    );
-
-    setFareSubCategories(availableSubcategories);
+    setFareSubCategories(selectedFareCategories.subcategories);
   }, [selectedClass, flightInfo]);
 
   return (
@@ -110,6 +112,8 @@ const ListItem = ({
                 return { value: rightItem };
               })}
               buttonText={dict.list_select_flight}
+              status={item.status}
+              buttonDisabled={buttonDisabledControl(item.brandCode)}
             />
           ))}
         </div>

@@ -23,6 +23,8 @@ import { editedPathName } from "@/utils/hooks/usePathWithLanguage";
 import { ROUTE } from "@/utils/constants/routes";
 import { useFlights } from "@/contexts/FlightContext";
 import { useUniqueAirports } from "@/utils/hooks/useUniqueAirports";
+import "react-responsive-modal/styles.css";
+import { Modal } from "react-responsive-modal";
 
 const FlightSearchWrapper = ({ dict }: { dict: DictType }) => {
   const router = useRouter();
@@ -34,6 +36,8 @@ const FlightSearchWrapper = ({ dict }: { dict: DictType }) => {
   const [selectedPassengerClass, setSelectedPassengerClass] = useState<string>(
     flightClass.ECONOMY,
   );
+  const [showErrorModal, setShowErrorModal] = useState<boolean>(false);
+
   const { flights } = useFlights();
   const { originAirports, destinationAirports } = useUniqueAirports(flights);
   const flightSearchInputs = [
@@ -59,12 +63,37 @@ const FlightSearchWrapper = ({ dict }: { dict: DictType }) => {
     },
   ];
 
+  const redirectListingPage = () => {
+    const originAirportJson = localStorage.getItem(
+      LOCAL_STORAGE_KEYS.ORIGIN_AIRPORTS,
+    );
+    const destinationAirportJson = localStorage.getItem(
+      LOCAL_STORAGE_KEYS.DESTINATION_AIRPORTS,
+    );
+
+    const originAirport = originAirportJson
+      ? JSON.parse(originAirportJson)
+      : null;
+    const destinationAirport = destinationAirportJson
+      ? JSON.parse(destinationAirportJson)
+      : null;
+
+    if (originAirport && destinationAirport) {
+      router.push(editedPathName(pathName, ROUTE.flightList));
+    } else {
+      setShowErrorModal(true);
+    }
+  };
+
   useEffect(() => {
     localStorage.setItem(
       LOCAL_STORAGE_KEYS.SELECTED_PASSENGER_CLASS,
       flightClass.ECONOMY,
     );
     localStorage.setItem(LOCAL_STORAGE_KEYS.SELECTED_PASSENGER_COUNT, "1");
+    localStorage.setItem(LOCAL_STORAGE_KEYS.SELECTED_CABIN, "");
+    localStorage.removeItem(LOCAL_STORAGE_KEYS.ORIGIN_AIRPORTS);
+    localStorage.removeItem(LOCAL_STORAGE_KEYS.DESTINATION_AIRPORTS);
   }, []);
 
   return (
@@ -78,11 +107,7 @@ const FlightSearchWrapper = ({ dict }: { dict: DictType }) => {
           passengerOnClick={() => setShowPassengerDropdown(true)}
           passengerCount={selectedPassengerCount}
         />
-        <SearchButton
-          onClick={() =>
-            router.push(editedPathName(pathName, ROUTE.flightList))
-          }
-        />
+        <SearchButton onClick={() => redirectListingPage()} />
         {showPassengerDropdown && (
           <PassengerDropdown
             dict={dict}
@@ -106,6 +131,10 @@ const FlightSearchWrapper = ({ dict }: { dict: DictType }) => {
           />
         )}
       </div>
+
+      <Modal open={showErrorModal} onClose={() => setShowErrorModal(false)}>
+        <p>{dict.query_error_message}</p>
+      </Modal>
     </div>
   );
 };
