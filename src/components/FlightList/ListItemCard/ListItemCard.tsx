@@ -3,10 +3,12 @@ import { LOCAL_STORAGE_KEYS } from "@/utils/constants/consts";
 import { usePathname, useRouter } from "next/navigation";
 import { editedPathName } from "@/utils/hooks/usePathWithLanguage";
 import { ROUTE } from "@/utils/constants/routes";
+import { types } from "sass";
+import Number = types.Number;
 const ListItemCard = ({
   headerTitleText = "",
   currencyCode = "TRY",
-  price = "",
+  price = "0",
   cabinFeatures = [],
   buttonText = "",
 }: {
@@ -20,8 +22,21 @@ const ListItemCard = ({
 }) => {
   const router = useRouter();
   const pathName = usePathname();
+
   const cabinSelectionCompleted = () => {
-    localStorage.setItem(LOCAL_STORAGE_KEYS.SELECTED_CABIN, price);
+    const passengerCount =
+      localStorage.getItem(LOCAL_STORAGE_KEYS.SELECTED_PASSENGER_COUNT) || "0";
+
+    const passengerCountNumber = parseFloat(passengerCount);
+    const priceNumber = parseFloat(price);
+
+    const finalPrice = passengerCountNumber * priceNumber;
+
+    localStorage.setItem(
+      LOCAL_STORAGE_KEYS.SELECTED_CABIN,
+      finalPrice.toString(),
+    );
+
     router.push(editedPathName(pathName, ROUTE.flightCabinSelectedCompleted));
   };
 

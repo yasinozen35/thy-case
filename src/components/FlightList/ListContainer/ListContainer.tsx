@@ -4,7 +4,7 @@ import styles from "./ListContainer.module.scss";
 import ListItem from "@/components/FlightList/ListItem/ListItem";
 import { DictType } from "@/utils/types/commonTypes";
 import { useEffect, useState } from "react";
-import { flightClass } from "@/utils/constants/consts";
+import { flightClass, LOCAL_STORAGE_KEYS } from "@/utils/constants/consts";
 import PromotionCodeApply from "@/components/FlightList/PromotionCode/PromotionCodeApply/PromotionCodeApply";
 import { useFlights } from "@/contexts/FlightContext";
 import { formattedFlightList } from "@/utils/hooks/formattedFlightList";
@@ -21,9 +21,15 @@ const ListContainer = ({ dict }: { dict: DictType }) => {
   useEffect(() => {
     if (flights.length) {
       setFlightList(formattedFlightList(flights));
-      console.log("formattedFlightList(flights)", formattedFlightList(flights));
     }
   }, [flights]);
+
+  useEffect(() => {
+    const savedClass = localStorage.getItem(
+      LOCAL_STORAGE_KEYS.SELECTED_PASSENGER_CLASS,
+    );
+    setSelectedClass(savedClass || flightClass.ECONOMY);
+  }, []);
 
   return (
     <div className={styles.listContainer}>

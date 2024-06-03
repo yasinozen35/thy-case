@@ -16,6 +16,10 @@ const FlightSearchInput = ({
 }) => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [value, setValue] = useState<string>("");
+  const handleSetValue = (value: string) => {
+    setValue(value);
+    setShowOptions(value.length > 0);
+  };
   return (
     <div className={styles.container}>
       <div
@@ -29,7 +33,7 @@ const FlightSearchInput = ({
         <input
           placeholder={placeHolder}
           value={value}
-          onChange={() => console.log("geldi")}
+          onChange={(e) => handleSetValue(e.target.value)}
         />
       </div>
       {options.length > 0 && showOptions && (
